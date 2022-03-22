@@ -32,8 +32,9 @@ export default class Map extends Component {
           <Card className='map'>
             <Card.Body>
               <Card.Title></Card.Title>
-              <Card.Text>Lattid{this.props.lat}</Card.Text>
-              <Card.Text> {this.props.lon}</Card.Text>
+              <Card.Text>City: {this.props.display}</Card.Text>
+              <Card.Text>Latitude: {this.props.lat}</Card.Text>
+              <Card.Text>Longitude: {this.props.lon}</Card.Text>
             </Card.Body>
           </Card>
         </>
