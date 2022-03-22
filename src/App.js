@@ -15,7 +15,10 @@ export default class App extends Component {
       cityData: {},
       lat:'',
       lon:'',
-      display:''
+      display:'',
+      error: false,
+      errorMessage: ''
+      
       
     }
   }
@@ -30,20 +33,28 @@ export default class App extends Component {
   getCityData = async (e) => {
     e.preventDefault();
     // get data from api
-    let cityDataLocations = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`);
+    try{
+      let cityDataLocations = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`);
 
-    
-    let city = cityDataLocations.data[0];
-
-    
-    // save it to state.
-    this.setState({
-      lat:city.lat,
-      lon:city.lon,
-      display:city.display_name
-    
+      let cityDataMap = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.lat},${this.state.lon}&zoom=12&size=300x300&format=<format>&maptype=<MapType>&markers=icon:<icon>|${this.state.lat},${this.state.lon}&markers=icon:<icon>|${this.state.lat},${this.state.lon}`
+  
       
-    });
+      let city = cityDataLocations.data[0];
+  
+      
+      // save it to state.
+      this.setState({
+        lat:city.lat,
+        lon:city.lon,
+        display:city.display_name,
+        img: cityDataMap
+      });
+    } catch (error){
+      this.setState({
+        error:true,
+        errorMessage: `An error occurred: ${error.response.status}`
+      })
+    }
   };
   
   
@@ -51,7 +62,7 @@ export default class App extends Component {
   
   
   render() {
-    console.log(this.state)
+    
     // let cityDataLocationsList = this.state.cityData.reduce((acc,curr) => { 
     //   return acc + curr.display_name + curr.lat + curr.lon
     // }
@@ -65,13 +76,21 @@ export default class App extends Component {
           handleCityInput={this.handleCityInput}
 
         />
-        <div>
+          {this.state.error
+          ?
+          <p>{this.state.errorMessage}</p>
+           :
+           <ul>
           {this.state.lat === "" ? undefined: <li>{this.state.lat}</li>}
           
           {this.state.lon === "" ? undefined: <li>{this.state.lon}</li>}
           
-          {this.state.lat === "" ? undefined: <li>{this.state.display}</li>}
-        </div>
+          {this.state.display === "" ? undefined: <li>{this.state.display}</li>}
+          {this.state.img === "" ? undefined: <img src={this.state.img} alt={this.state.display}/>}
+          </ul> 
+          }
+          
+        
         <Footer />
       </>
     )
