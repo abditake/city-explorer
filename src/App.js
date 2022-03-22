@@ -66,7 +66,7 @@ export default class App extends Component {
   render() {
     console.log(this.state.lat);
     console.log(this.state.lon);
-    let cityMapUrl = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.lat},${this.state.lon}&zoom=14&size=300x300`
+    let cityMapUrl = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.lat},${this.state.lon}&zoom=12&size=300x300`
 
     // let cityDataLocationsList = this.state.cityData.reduce((acc,curr) => { 
     //   return acc + curr.display_name + curr.lat + curr.lon
