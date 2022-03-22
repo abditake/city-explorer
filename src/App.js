@@ -7,6 +7,7 @@ import axios from 'axios';
 
 
 
+
 export default class App extends Component {
   constructor(props) {
     super(props)
@@ -17,7 +18,9 @@ export default class App extends Component {
       lon:'',
       display:'',
       error: false,
-      errorMessage: ''
+      errorMessage: '',
+      img: ''
+
       
       
     }
@@ -39,14 +42,14 @@ export default class App extends Component {
       let cityDataMap = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.lat},${this.state.lon}&zoom=12&size=300x300&format=<format>&maptype=<MapType>&markers=icon:<icon>|${this.state.lat},${this.state.lon}&markers=icon:<icon>|${this.state.lat},${this.state.lon}`
   
       
-      let city = cityDataLocations.data[0];
+      let cities = cityDataLocations.data[0];
   
       
       // save it to state.
       this.setState({
-        lat:city.lat,
-        lon:city.lon,
-        display:city.display_name,
+        lat:cities.lat,
+        lon:cities.lon,
+        display:cities.display_name,
         img: cityDataMap
       });
     } catch (error){
@@ -74,23 +77,14 @@ export default class App extends Component {
         <Forms
           getCityData={this.getCityData}
           handleCityInput={this.handleCityInput}
-
+          lat={this.state.lat}
+          lan={this.state.lan}
+          display={this.state.display}
+          img={this.state.img}
+          error={this.state.error}
+          errorMessage={this.state.errorMessage}
         />
-          {this.state.error
-          ?
-          <p>{this.state.errorMessage}</p>
-           :
-           <ul>
-          {this.state.lat === "" ? undefined: <li>{this.state.lat}</li>}
-          
-          {this.state.lon === "" ? undefined: <li>{this.state.lon}</li>}
-          
-          {this.state.display === "" ? undefined: <li>{this.state.display}</li>}
-          {this.state.img === "" ? undefined: <img src={this.state.img} alt={this.state.display}/>}
-          </ul> 
-          }
-          
-        
+
         <Footer />
       </>
     )
