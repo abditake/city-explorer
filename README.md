@@ -19,15 +19,20 @@
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+#### 
+- thomas Basham: helped each other with our code.
+- Ella Svete: helped me with backend code as well as how to setup front end.
+
 Time Estimates
 For each of the lab features, make an estimate of the time it will take you to complete the feature, and record your start and finish times for that feature:
 
-Name of feature: ________________________________
+Name of feature: Backend Api(part)
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 5 hours
 
-Start time: _____
+Start time: 3:00pm
 
-Finish time: _____
+Finish time: 10:00pm
 
-Actual time needed to complete: _____
+Actual time needed to complete: 7 hours
+
