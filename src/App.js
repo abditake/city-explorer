@@ -6,6 +6,7 @@ import Footer from './Footer';
 import axios from 'axios';
 import Map from './Map';
 
+
 export default class App extends Component {
   constructor(props) {
     super(props)
@@ -17,6 +18,7 @@ export default class App extends Component {
       display: '',
       error: false,
       errorMessage: '',
+      weatherData:''
 
 
 
@@ -37,8 +39,6 @@ export default class App extends Component {
     // let ParsedLon = parseInt(this.state.lon);
     try {
       let cityDataLocations = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`);
-
-
 
 
       let cities = cityDataLocations.data[0];
@@ -68,6 +68,7 @@ export default class App extends Component {
     console.log(this.state.lon);
     let cityMapUrl = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.lat},${this.state.lon}&zoom=12&size=300x300`
 
+    
     // let cityDataLocationsList = this.state.cityData.reduce((acc,curr) => { 
     //   return acc + curr.display_name + curr.lat + curr.lon
     // }
@@ -79,13 +80,11 @@ export default class App extends Component {
         <Forms
           getCityData={this.getCityData}
           handleCityInput={this.handleCityInput}
-
-
-
           error={this.state.error}
           errorMessage={this.state.errorMessage}
         />
-      
+        <Weather
+        city={this.state.city}/>
         {this.state.lat ?
           <Map
             lat={this.state.lat}
