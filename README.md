@@ -36,3 +36,4 @@ Finish time: 10:00pm
 
 Actual time needed to complete: 7 hours
 
+![WRRC](./assets/Blank%20diagram.png)
