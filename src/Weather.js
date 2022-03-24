@@ -2,7 +2,7 @@ import React from 'react';
 import { ListGroup,Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-class App extends React.Component {
+class Weather extends React.Component {
 
   render() {
     return (
@@ -37,6 +37,6 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default Weather;
 
 
