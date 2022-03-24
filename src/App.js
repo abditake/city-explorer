@@ -8,10 +8,12 @@ import Map from './Map';
 import Weather from './Weather.js'
 
 
+
+
 export default class App extends Component {
   constructor(props) {
     super(props)
-    
+
     this.state = {
       cityData: {},
       lat: '',
@@ -19,18 +21,18 @@ export default class App extends Component {
       display: '',
       error: false,
       errorMessage: '',
-      weatherData:[]
-      
-      
-      
-      
+      weatherData: []
+
+
+
+
     }
   }
-  
+
   handleCityInput = (event) => {
     this.setState({
       city: event.target.value
-      
+
     });
   };
 
@@ -41,21 +43,21 @@ export default class App extends Component {
     // let ParsedLon = parseInt(this.state.lon);
     try {
       let cityDataLocations = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`);
-      
+
       let cities = cityDataLocations.data[0];
       console.log(cities);
-      
-      let cityForeCast = await axios.get(`${process.env.REACT_APP_SERVER}weather?searchQuery=${this.state.city}`);
-      
-      let day1ForeCast = cityForeCast.forecast;
-      console.log(day1ForeCast);
-      
+
+      let cityForeCast = await axios.get(`${process.env.REACT_APP_SERVER}weather?searchQueryCity=${this.state.city}}`);
+
+      let forecast = cityForeCast.data;
+
+
       // save it to state.
       this.setState({
         lat: cities.lat,
         lon: cities.lon,
         display: cities.display_name,
-        weatherData: day1ForeCast
+        weatherData: forecast
 
       });
     } catch (error) {
@@ -66,22 +68,31 @@ export default class App extends Component {
     }
   };
 
-  
-  
-  
-  
+
+
+
+
   render() {
     let cityMapUrl = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.lat},${this.state.lon}&zoom=12&size=300x300`
-    
-    
-    console.log(this.state.weatherDay1)
+
+
+    let foreCastWeatherData = this.state.weatherData.map((a) => {
+      return a.forecast;
+    });
+
+    let foreCastDescData = this.state.weatherData.map((a) => {
+      return a.description;
+    });
+
+
+    console.log(this.state.weatherData);
     // let cityDataLocationsList = this.state.cityData.reduce((acc,curr) => { 
-      //   return acc + curr.display_name + curr.lat + curr.lon
-      // }
-      // )
-      
-      return (
-        <>
+    //   return acc + curr.display_name + curr.lat + curr.lon
+    // }
+    // )
+
+    return (
+      <>
         <Header />
         {/* <div> {cityDataLocationsList} </div> */}
         <Forms
@@ -90,16 +101,7 @@ export default class App extends Component {
           error={this.state.error}
           errorMessage={this.state.errorMessage}
         />
-        {this.state.lat
-        ?
-          <Weather
-          weatherDay1={this.state.weatherDay1}
-        />
-        :
-        <>
-        </>
-        }
-        
+
         {this.state.lat ?
           <Map
             lat={this.state.lat}
@@ -109,7 +111,18 @@ export default class App extends Component {
           />
           :
           <>
-          {this.state.errorMessage}
+            {this.state.errorMessage}
+          </>
+        }
+
+        {this.state.lat
+          ?
+          <Weather
+            foreCastData={foreCastWeatherData}
+            foreCastDescData={foreCastDescData}
+          />
+          :
+          <>
           </>
         }
         <Footer />

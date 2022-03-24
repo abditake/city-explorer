@@ -37,3 +37,28 @@ Finish time: 10:00pm
 Actual time needed to complete: 7 hours
 
 ![WRRC](./assets/Blank%20diagram.png)
+
+Time Estimates
+For each of the lab features, make an estimate of the time it will take you to complete the feature, and record your start and finish times for that feature:
+
+Name of feature: Backend Api+ Front-end (weather data)
+
+Estimate of time needed to complete: 5 hours
+
+Start time: 4:00pm
+
+Finish time: 9:30pm
+
+Actual time needed to complete: 4 hours and 30mins
+
+Name of feature: Backend Api+ Front-end (Movie Data)
+
+Estimate of time needed to complete: 1 hour
+
+Start time: 10:00pm
+
+Finish time: :pm
+
+Actual time needed to complete: 
+
+![WRRC](./assets/Blank%20diagram%20(1).png)

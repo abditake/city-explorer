@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button,Container } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
@@ -10,6 +11,8 @@ export default class Forms extends Component {
 
 
     return (
+      <Container>
+
       <Form onSubmit={this.props.getCityData}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Search for City</Form.Label>
@@ -19,6 +22,7 @@ export default class Forms extends Component {
           </Button>
         </Form.Group>
       </Form>
+      </Container>
     )
   }
 }
