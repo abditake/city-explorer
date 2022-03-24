@@ -47,7 +47,7 @@ export default class App extends Component {
       let cities = cityDataLocations.data[0];
       console.log(cities);
 
-      let cityForeCast = await axios.get(`${process.env.REACT_APP_SERVER}weather?searchQuery=${this.state.city}`);
+      let cityForeCast = await axios.get(`${process.env.REACT_APP_SERVER}weather?searchQueryCity=${this.state.city}}`);
 
       let forecast = cityForeCast.data;
 
