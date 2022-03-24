@@ -1,11 +1,13 @@
 import React from 'react';
-import { ListGroup } from 'react-bootstrap';
+import { ListGroup,Container } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends React.Component {
 
   render() {
     return (
       <>
+      <Container>
         <ListGroup>
           <ListGroup.Item>
             
@@ -29,6 +31,7 @@ class App extends React.Component {
             {this.props.foreCastDescData[2]}
           </ListGroup.Item>
         </ListGroup>
+      </Container>
       </>
     );
   }
