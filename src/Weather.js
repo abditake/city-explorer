@@ -32,6 +32,7 @@ class Weather extends React.Component {
           </ListGroup.Item>
         </ListGroup>
       </Container>
+      {this.props.movieItems}
       </>
     );
   }

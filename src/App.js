@@ -1,11 +1,15 @@
 
+
 import React, { Component } from 'react'
 import Header from './Header';
+import { Card } from 'react-bootstrap';
 import Forms from './Form';
 import Footer from './Footer';
 import axios from 'axios';
 import Map from './Map';
 import Weather from './Weather.js'
+import Movie from './Movie.js';
+
 
 
 
@@ -22,9 +26,7 @@ export default class App extends Component {
       error: false,
       errorMessage: '',
       weatherData: [],
-      
-
-
+      movieDataArray: []
 
 
     }
@@ -48,18 +50,23 @@ export default class App extends Component {
       let cities = cityDataLocations.data[0];
       
       let cityForeCast = await axios.get(`${process.env.REACT_APP_SERVER}weather?searchQueryCity=${this.state.city}}`);
-      
+
+
+      let cityMovieData = await axios.get(`${process.env.REACT_APP_SERVER}movie?movieQueryCity=${this.state.city}`);
+
       let forecast = cityForeCast.data;
-      
-     
-      
+
+      let movieData = cityMovieData.data;
+
       // save it to state.
       this.setState({
         lat: cities.lat,
         lon: cities.lon,
         display: cities.display_name,
-        weatherData: forecast
-        
+        weatherData: forecast,
+        movieDataArray: movieData
+
+
       });
     } catch (error) {
       this.setState({
@@ -69,64 +76,102 @@ export default class App extends Component {
     }
   };
   
-  
-  
-  
-  
-  render() {
-    let cityMapUrl = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.lat},${this.state.lon}&zoom=12&size=300x300`
-    
 
-    let foreCastWeatherData = this.state.weatherData.map((a) => {
-      return a.forecast;
-    });
+render() {
+  let cityMapUrl = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.lat},${this.state.lon}&zoom=12&size=300x300`
 
-    let foreCastDescData = this.state.weatherData.map((a) => {
-      return a.description;
-    });
+  console.log(this.state.movieDataArray);
+
+  let foreCastWeatherData = this.state.weatherData.map((a) => {
+    return a.forecast;
+  });
+
+  let foreCastDescData = this.state.weatherData.map((a) => {
+    return a.description;
+  });
 
 
-    // let cityDataLocationsList = this.state.cityData.reduce((acc,curr) => { 
-    //   return acc + curr.display_name + curr.lat + curr.lon
-    // }
-    // )
+  // let movieItems = this.props.moveArray.map((item,idx) => {
+  //   return(
+  //     <>
+      
+  //       <Card key={idx}>
+  //         <Card.Body>
+  //           <Card.Title>{item.title}</Card.Title>
+  //           <Card.Text>
+  //           {item.description}
+  //           </Card.Text>
+  //           <Card.Text>
+  //           {item.avgVotes}
+  //           </Card.Text>
+  //           <Card.Text>
+  //           {item.popularity}
+  //           </Card.Text>
+  //           <Card.Text>
+  //           {item.releasedOn}
+  //           </Card.Text>
+  //         </Card.Body>
+  //       </Card>
+      
+  //     </>
+  //   );
+  // });
 
-    return (
-      <>
-        <Header />
-        {/* <div> {cityDataLocationsList} </div> */}
-        <Forms
-          getCityData={this.getCityData}
-          handleCityInput={this.handleCityInput}
-          error={this.state.error}
-          errorMessage={this.state.errorMessage}
+
+
+
+
+  // let cityDataLocationsList = this.state.cityData.reduce((acc,curr) => { 
+  //   return acc + curr.display_name + curr.lat + curr.lon
+  // }
+  // )
+
+  return (
+    <>
+      <Header />
+      {/* <div> {cityDataLocationsList} </div> */}
+      <Forms
+        getCityData={this.getCityData}
+        handleCityInput={this.handleCityInput}
+        error={this.state.error}
+        errorMessage={this.state.errorMessage}
+      />
+
+      {this.state.lat ?
+        <Map
+          lat={this.state.lat}
+          lon={this.state.lon}
+          display={this.state.display}
+          img={cityMapUrl}
+
         />
+        :
+        <>
+          {this.state.errorMessage}
+        </>
+      }
 
-        {this.state.lat ?
-          <Map
-            lat={this.state.lat}
-            lon={this.state.lon}
-            display={this.state.display}
-            img={cityMapUrl}
-          />
-          :
-          <>
-            {this.state.errorMessage}
-          </>
-        }
-
-        {this.state.lat
-          ?
-          <Weather
-            foreCastData={foreCastWeatherData}
-            foreCastDescData={foreCastDescData}
-          />
-          :
-          <>
-          </>
-        }
-        <Footer />
+      {this.state.lat
+        ?
+        <Weather
+          foreCastData={foreCastWeatherData}
+          foreCastDescData={foreCastDescData}
+         
+        />
+        :
+        <>
+        </>
+      }
+      {this.state.lat?
+      <Movie
+      movieArray={this.state.movieArray}
+      />
+      :
+      <>
       </>
-    )
-  }
+}
+      <Footer />
+    </>
+  )
+}
 }

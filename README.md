@@ -62,3 +62,29 @@ Finish time: :pm
 Actual time needed to complete: 
 
 ![WRRC](./assets/Blank%20diagram%20(1).png)
+
+
+
+
+Name of feature: connecting backend movie api to front end
+
+Estimate of time needed to complete: 1 hour
+
+Start time: 1:15pm
+
+Finish time: 2:30
+
+Actual time needed to complete: 1:15 mins
+
+
+Name of feature: displaying movie api on page 
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 2:30 pm
+
+Finish time: -
+
+Actual time needed to complete: -
+
+![WRRC: All Api's Connected](./assets/Blank%20diagram3.png)
