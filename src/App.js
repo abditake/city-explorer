@@ -28,6 +28,7 @@ export default class App extends Component {
       weatherData: [],
       movieDataArray: []
 
+
     }
   }
 
@@ -47,16 +48,15 @@ export default class App extends Component {
       let cityDataLocations = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`);
 
       let cities = cityDataLocations.data[0];
-      console.log(cities);
-
+      
       let cityForeCast = await axios.get(`${process.env.REACT_APP_SERVER}weather?searchQueryCity=${this.state.city}}`);
+
 
       let cityMovieData = await axios.get(`${process.env.REACT_APP_SERVER}movie?movieQueryCity=${this.state.city}`);
 
       let forecast = cityForeCast.data;
 
       let movieData = cityMovieData.data;
-
 
       // save it to state.
       this.setState({
@@ -76,7 +76,6 @@ export default class App extends Component {
     }
   };
   
-
 
 render() {
   let cityMapUrl = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.lat},${this.state.lon}&zoom=12&size=300x300`
@@ -144,6 +143,7 @@ render() {
           lon={this.state.lon}
           display={this.state.display}
           img={cityMapUrl}
+
         />
         :
         <>
