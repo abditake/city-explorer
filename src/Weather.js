@@ -2,6 +2,7 @@ import React from 'react';
 import { ListGroup,Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 class Weather extends React.Component {
   
   render() {
@@ -32,7 +33,7 @@ class Weather extends React.Component {
           </ListGroup.Item>
         </ListGroup>
       </Container>
-      {this.props.movieItems}
+      
       </>
     );
   }

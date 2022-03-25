@@ -98,8 +98,21 @@ Estimate of time needed to complete: 2 hours
 
 Start time: 2:30 pm
 
-Finish time: -
+Finish time: next day 1:56( i had to stop working on the front part because I was at work)
 
-Actual time needed to complete: -
+Actual time needed to complete: 3 hours
 
 ![WRRC: All Api's Connected](./assets/Blank%20diagram3.png)
+
+
+Name of feature: adding Cache to server to track previously made request.
+
+Estimate of time needed to complete: 3 hours
+
+Start time: 2:00pm
+
+Finish time: 
+
+Actual time needed to complete: 
+
+![WRRC](./assets/final%20day%20WRRC.png)

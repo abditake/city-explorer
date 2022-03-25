@@ -5,12 +5,8 @@ export default class Movie extends Component {
   
   
   render() {
-    
       return(
         <>
-        
-        
-        
       {
         this.props.movieArray.map((item,idx) => (
 
@@ -32,17 +28,9 @@ export default class Movie extends Component {
               </Card.Text>
             </Card.Body>
           </Card>
-
-
-        )
-
-        )
-
-
-      }
+        ))}
 
       </>
-      )
-
+      );
   }
 }

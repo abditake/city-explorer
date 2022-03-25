@@ -150,26 +150,25 @@ render() {
           {this.state.errorMessage}
         </>
       }
-
       {this.state.lat
         ?
         <Weather
           foreCastData={foreCastWeatherData}
           foreCastDescData={foreCastDescData}
-         
         />
         :
         <>
         </>
       }
-      {this.state.lat?
+      {this.state.movieDataArray
+      ?
       <Movie
-      movieArray={this.state.movieArray}
+      movieArray={this.state.movieDataArray}
       />
       :
       <>
       </>
-}
+      }
       <Footer />
     </>
   )
