@@ -25,6 +25,21 @@ the user must input a local port in the
 
 Time Estimates
 For each of the lab features, make an estimate of the time it will take you to complete the feature, and record your start and finish times for that feature:
+Name of feature: displaying location api
+
+Estimate of time needed to complete: 5 hours
+
+Start time: 3:00pm
+
+Finish time: 6:00pm
+
+Actual time needed to complete: 3 hours
+
+![WRRC](./assets/first%20WRRC.png)
+
+
+
+
 
 Name of feature: Backend Api(part)
 
