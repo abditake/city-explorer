@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react'
 import Header from './Header';
-import { Card } from 'react-bootstrap';
+// import { Card } from 'react-bootstrap';
 import Forms from './Form';
 import Footer from './Footer';
 import axios from 'axios';
@@ -47,7 +47,7 @@ export default class App extends Component {
       let cityDataLocations = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`);
 
       let cities = cityDataLocations.data[0];
-      console.log(cities);
+    
 
       let cityForeCast = await axios.get(`${process.env.REACT_APP_SERVER}weather?searchQueryCity=${this.state.city}}`);
 
@@ -90,7 +90,12 @@ render() {
   let foreCastDescData = this.state.weatherData.map((a) => {
     return a.description;
   });
+  
+  let movieDescData = this.state.movieDataArray.map((idx,a) => {
+    return a.description[idx];
+  });
 
+  console.log(movieDescData);
 
   // let movieItems = this.props.moveArray.map((item,idx) => {
   //   return(
