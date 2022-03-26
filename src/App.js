@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react'
 import Header from './Header';
-import { Card } from 'react-bootstrap';
 import Forms from './Form';
 import Footer from './Footer';
 import axios from 'axios';
@@ -92,45 +91,9 @@ render() {
   });
 
 
-  // let movieItems = this.props.moveArray.map((item,idx) => {
-  //   return(
-  //     <>
-      
-  //       <Card key={idx}>
-  //         <Card.Body>
-  //           <Card.Title>{item.title}</Card.Title>
-  //           <Card.Text>
-  //           {item.description}
-  //           </Card.Text>
-  //           <Card.Text>
-  //           {item.avgVotes}
-  //           </Card.Text>
-  //           <Card.Text>
-  //           {item.popularity}
-  //           </Card.Text>
-  //           <Card.Text>
-  //           {item.releasedOn}
-  //           </Card.Text>
-  //         </Card.Body>
-  //       </Card>
-      
-  //     </>
-  //   );
-  // });
-
-
-
-
-
-  // let cityDataLocationsList = this.state.cityData.reduce((acc,curr) => { 
-  //   return acc + curr.display_name + curr.lat + curr.lon
-  // }
-  // )
-
   return (
     <>
-      <Header />
-      {/* <div> {cityDataLocationsList} </div> */}
+      <Header/>
       <Forms
         getCityData={this.getCityData}
         handleCityInput={this.handleCityInput}

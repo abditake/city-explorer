@@ -13,6 +13,7 @@ export default class Movie extends Component {
          
           <Card key={idx}>
             <Card.Body>
+              {item.img ?<Card.Img src={`https://image.tmdb.org/t/p/w500/${item.img}`} alt={item.title}> </Card.Img> : ''}
               <Card.Title>{item.title}</Card.Title>
               <Card.Text>
               {item.description}
