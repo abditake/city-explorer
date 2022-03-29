@@ -1,40 +1,25 @@
 import React from 'react';
-import { ListGroup,Container } from 'react-bootstrap';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
+import WeatherDay from './WeatherDay'
 
 
 class Weather extends React.Component {
-  
+
   render() {
+    console.log(this.props.weatherData);
+
+
+    let weather = this.props.weatherData.map((day, idx) => (
+      <WeatherDay
+        description={day.description}
+        key={idx}
+        city={this.props.city}
+        date={day.forecast}
+      />
+    ))
     return (
-      <>
-      <Container>
-        <ListGroup>
-          <ListGroup.Item>
-            
-            Day: {this.props.foreCastData[0]}
-            <br></br>
-            {this.props.foreCastDescData[0]}
-            
-            </ListGroup.Item>
-          <ListGroup.Item>
-            
-          Day: {this.props.foreCastData[1]}
-            <br></br>
-            {this.props.foreCastDescData[1]}
-          
-          </ListGroup.Item>
-          
-          
-          <ListGroup.Item>
-          Day: {this.props.foreCastData[2]}
-            <br></br>
-            {this.props.foreCastDescData[2]}
-          </ListGroup.Item>
-        </ListGroup>
-      </Container>
-      
-      </>
+      [weather]
     );
   }
 }

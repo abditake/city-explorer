@@ -1,36 +1,28 @@
 import React, { Component } from 'react'
-import { Card } from 'react-bootstrap'
+import MovieC from './MovieC';
 
 export default class Movie extends Component {
-  
-  
+
+
   render() {
-      return(
-        <>
-      {
-        this.props.movieArray.map((item,idx) => (
-
-         
-          <Card key={idx}>
-            <Card.Body>
-              <Card.Title>{item.title}</Card.Title>
-              <Card.Text>
-              {item.description}
-              </Card.Text>
-              <Card.Text>
-              {item.avgVotes}
-              </Card.Text>
-              <Card.Text>
-              {item.popularity}
-              </Card.Text>
-              <Card.Text>
-              {item.releasedOn}
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        ))}
-
-      </>
-      );
-  }
+    
+    console.log(this.props.movieArray);
+    let movies = this.props.movieArray.map((item, idx) => (
+      
+      <MovieC
+      movie={idx}
+      description ={item.description}
+      title={item.title}
+      avgVotes={item.avgVotes}
+      allVotes={item.totalVotes}
+      popularity={item.popularity}
+      releasedOn={item.releasedOn}
+      img={item.img}
+      />
+      
+    ))
+    return(
+      [movies]
+    );
+  };
 }
